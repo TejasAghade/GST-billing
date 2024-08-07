@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:shop_management/fetures/auth/view/pages/signin_page.dart';
 import 'package:shop_management/fetures/auth/view/pages/signup_page.dart';
+import 'package:shop_management/fetures/dashboard/view/pages/Dashboard_page.dart';
+import 'package:shop_management/fetures/entries/view/pages/entries_page.dart';
 
 
 final GoRouter customRouter = GoRouter(
@@ -17,6 +19,51 @@ final GoRouter customRouter = GoRouter(
           pageBuilder: (context, state) => NoTransitionPage<void>(
             key: state.pageKey,
             child: const SignInScreen(),
+          ),
+        ),
+      ],
+    ),
+  ],
+);
+
+
+final GoRouter secureRoutes = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      pageBuilder: (context, state) => NoTransitionPage<void>(
+        key: state.pageKey,
+        child: const DashboardPage(),
+      ),
+      routes: <RouteBase>[
+        GoRoute(
+          path: 'entries',
+          pageBuilder: (context, state){
+            return NoTransitionPage<void>(
+              key: state.pageKey,
+              child: const EntriesPage(),
+            );
+          },
+        ),
+        GoRoute(
+          path: 'billing',
+          pageBuilder: (context, state) => NoTransitionPage<void>(
+            key: state.pageKey,
+            child: const EntriesPage(),
+          ),
+        ),
+        GoRoute(
+          path: 'clients',
+          pageBuilder: (context, state) => NoTransitionPage<void>(
+            key: state.pageKey,
+            child: const EntriesPage(),
+          ),
+        ),
+        GoRoute(
+          path: 'settings',
+          pageBuilder: (context, state) => NoTransitionPage<void>(
+            key: state.pageKey,
+            child: const EntriesPage(),
           ),
         ),
       ],

@@ -19,8 +19,12 @@ class AuthLocalRepository{
     return localStorage.setString(key, value);
   }
 
-  Future<String?> getString({required String key,}) async{
+  String? getString({required String key}){
     return localStorage.getString(key);
+  }
+  
+  Future<bool> removeString({required String key}){
+    return localStorage.remove(key);
   }
 
 
@@ -29,9 +33,16 @@ class AuthLocalRepository{
       await setString(key: "accessToken", value: accessToken);
       await setString(key: "refreshToken", value: refreshToken);
     }catch(e){
-      print(e.toString());
+      rethrow;
     }
   }
-  
+
+  String? getAccessToken(){
+    try{
+     return getString(key: "accessToken");
+    }catch(e){
+      rethrow;
+    }
+  }  
 
 }

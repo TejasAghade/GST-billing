@@ -22,9 +22,9 @@ class AppTheme{
   static final lightThemeMode = ThemeData.light().copyWith(
       inputDecorationTheme: InputDecorationTheme(
         contentPadding: const EdgeInsets.all(15),
-        focusedBorder: _border(color: Pallet.primaryLightColor),
-        enabledBorder: _border(color: Pallet.greyTextFieldBorder),
-        errorBorder: _border(color: Pallet.errorColor)
+        focusedBorder: _border(color: Pallet.gray),
+        enabledBorder: _border(color: Pallet.gray),
+        errorBorder: _border(color: Pallet.gray)
       ),
       buttonTheme: _buttonThemeData(),
   );

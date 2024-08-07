@@ -22,7 +22,7 @@ class AuthRemoteRepository{
   ) async{
     try{
       var response = await ApiService().post(
-        endpoint: "/auth/register", 
+        endpoint: "/users/auth/register", 
         body: {
           "mobileNumber":phoneNo,
           "fullName":fullName,
@@ -59,7 +59,7 @@ class AuthRemoteRepository{
   ) async{
     try{
       var response = await ApiService().post(
-        endpoint: "/auth/login", 
+        endpoint: "/users/auth/login", 
         body: {
           "mobileNumber":phoneNo,
           "password":password
@@ -79,6 +79,38 @@ class AuthRemoteRepository{
       return left(
         AppFailure(
           statusCode: 500, 
+          success: false,
+        )
+      );
+    }
+
+  }
+
+
+  Future<Either<AppFailure, UserModel>> fetchUserData({
+    required String token,
+  }) async{
+    try{
+      var response = await ApiService().post(
+        endpoint: "/users/auth/getUser", 
+        body: {
+          "token":token,
+        }
+      );
+
+      if(response.statusCode != 200){
+        return left(AppFailure(
+          statusCode: response.statusCode, 
+          success: false, 
+          message: userModelFromJson(response.body).message!.toString()
+        ));
+      }
+      return right(userModelFromJson(response.body));
+
+    }catch(e){
+      return left(
+        AppFailure(
+          statusCode: 500,
           success: false,
         )
       );

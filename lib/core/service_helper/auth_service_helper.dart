@@ -35,8 +35,9 @@ class AuthService{
   bool checkSecureEndpoints({required String endpoint}){
 
     var endpointsCollection = {
+      "/users/auth/getUser" : true,
+      "/quotation/getAll" : true,
       "/entries/add" : true,
-      "/entries/get" : true,
     };
 
     return endpointsCollection[endpoint] ?? false;

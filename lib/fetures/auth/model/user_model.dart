@@ -74,8 +74,8 @@ class Data {
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
         user: json["user"] == null ? null : User.fromJson(json["user"]),
-        accessToken: json["accessToken"],
-        refreshToken: json["refreshToken"],
+        accessToken: json["accessToken"]??'',
+        refreshToken: json["refreshToken"]??'',
     );
 
     Map<String, dynamic> toJson() => {

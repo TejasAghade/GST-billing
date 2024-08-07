@@ -4,7 +4,7 @@ class AppFailure{
   final bool success;
   AppFailure({
     this.statusCode = 5001, 
-    required this.success, 
+    this.success = false, 
     this.message = "Sorry, an unexpected error occured!", 
   });
 

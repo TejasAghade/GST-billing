@@ -40,20 +40,17 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
       (_, next){
         next?.when(
           data: (data){
-            QuickAlert.show(
-              width: 300,
-              context: context,
-              type: QuickAlertType.success,
-              text: 'sss',
-            );
+            // context.go('/');
           }, 
           error: (err, st){
-            QuickAlert.show(
-              width: 300,
-              context: context,
-              type: QuickAlertType.error,
-              text: '$err',
-            );
+            if(ModalRoute.of(context)?.isCurrent ?? false){
+              QuickAlert.show(
+                width: 300,
+                context: context,
+                type: QuickAlertType.error,
+                text: '$err',
+              );
+            }
           }, 
           loading: (){}
         );

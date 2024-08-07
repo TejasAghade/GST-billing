@@ -55,12 +55,14 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
             );
           }, 
           error: (err, st){
-            QuickAlert.show(
-              width: 300,
-              context: context,
-              type: QuickAlertType.error,
-              text: '$err',
-            );
+            if(ModalRoute.of(context)?.isCurrent ?? false){
+              QuickAlert.show(
+                width: 300,
+                context: context,
+                type: QuickAlertType.error,
+                text: '$err',
+              );
+            }
           }, 
           loading: (){}
         );
@@ -136,7 +138,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                         if(!formKey.currentState!.validate()){
                           return;
                         }
-                       
                         await ref.read(authViewModelProvider.notifier).signUpUser(
                           phoneNumber: mobileController.text,
                           password: passwordController.text,
